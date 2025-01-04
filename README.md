@@ -2,14 +2,14 @@
 
 -Create react app
 -configured tailwind
-
+-
 
 # Features 
 
 - Login/sign up page
     - Sign in / Sign up form
     - redirect to Browse Page
-    
+
 - Browse(after authentication)
     -Header
     - Main movie
