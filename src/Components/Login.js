@@ -6,15 +6,14 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../Utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../Utils/userSlice";
+import { BG_IMAGE, PROFILE_PIC } from "../Utils/constants";
 
 const Login = () => {
   const [isSignedIn, setisSignedIn] = useState(null);
   const [errMessage, seterrMessage] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const Email = useRef(null);
   const Password = useRef(null);
@@ -33,7 +32,6 @@ const Login = () => {
 
     //Sign-in / Sign-out
     if (!isSignedIn) {
-      console.log("Inhere");
       //Sign-up logic
       createUserWithEmailAndPassword(
         auth,
@@ -45,8 +43,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: "Shaunak Durani",
-            photoURL:
-              "https://avatars.githubusercontent.com/u/144266558?s=400&v=4",
+            photoURL: PROFILE_PIC,
           })
             .then(() => {
               // Profile updated!
@@ -60,7 +57,6 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -86,8 +82,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -102,10 +96,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/2f5a878d-bbce-451b-836a-398227a34fbf/web/IN-en-20241230-TRIFECTA-perspective_5ab944a5-1a71-4f6d-b341-8699d0491edd_large.jpg"
-          alt="bg-image"
-        />
+        <img src={BG_IMAGE} alt="bg-image" />
       </div>
 
       <form
