@@ -52,7 +52,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <div className="absolute w-screen px-28 py-0 bg-gradient-to-b from-black z-30 flex justify-between">
+    <div className="absolute w-full max-w-full px-20 py-0 bg-gradient-to-b from-black z-30 flex justify-between">
       <img className="w-44" src={LOGO} alt="logo" />
 
       {user && (
